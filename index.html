@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<!-- saved from url=(0191)file:///C:/Users/Philosophy5078/AppData/Local/Packages/5319275A.WhatsAppDesktop_cv1g1gvanyjgm/LocalState/sessions/6DB6AF109D3E617CCFA372E7FB6E503DA96F96A2/transfers/2026-26/index%20fixed.html -->
+<html lang="es"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sistema de Resurtido</title>
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --bg: #0f1117; --surface: #1a1d27; --surface2: #22263a; --border: #2e3250;
+  --accent: #4f8ef7; --green: #2ecc71; --yellow: #f1c40f; --red: #e74c3c;
+  --text: #e8eaf6; --muted: #8892b0;
+}
+body { background: var(--bg); color: var(--text); font-family: 'Segoe UI', system-ui, sans-serif; min-height: 100vh; }
+#loginScreen { display:flex; align-items:center; justify-content:center; min-height:100vh; }
+.login-box { background:var(--surface); border:1px solid var(--border); border-radius:16px; padding:40px; width:340px; text-align:center; }
+.login-box h1 { font-size:22px; margin-bottom:6px; color:var(--accent); }
+.login-box p { color:var(--muted); font-size:13px; margin-bottom:28px; }
+.login-box input { width:100%; padding:12px 14px; background:var(--bg); border:1px solid var(--border); border-radius:8px; color:var(--text); font-size:14px; margin-bottom:12px; }
+.login-box input:focus { outline:none; border-color:var(--accent); }
+.error-msg { color:var(--red); font-size:13px; margin-top:8px; }
+.btn { padding:11px 22px; border-radius:8px; border:none; cursor:pointer; font-size:14px; font-weight:600; transition:opacity .2s; }
+.btn:hover { opacity:.85; }
+.btn-primary { background:var(--accent); color:#fff; width:100%; }
+.btn-sm { padding:7px 16px; font-size:12px; width:auto; }
+.btn-green { background:var(--green); color:#fff; }
+.btn-red { background:var(--red); color:#fff; }
+.btn-outline { background:transparent; border:1px solid var(--border); color:var(--text); }
+#appShell { display:none; flex-direction:column; min-height:100vh; }
+.topbar { display:flex; align-items:center; padding:0 20px; height:54px; background:var(--surface); border-bottom:1px solid var(--border); position:sticky; top:0; z-index:100; }
+.topbar-brand { font-weight:700; font-size:15px; color:var(--accent); flex:1; }
+.topbar-role { font-size:12px; color:var(--muted); margin-right:14px; }
+.topbar-user { font-size:13px; color:var(--text); margin-right:14px; font-weight:600; }
+.main-content { flex:1; padding:20px; max-width:1200px; margin:0 auto; width:100%; }
+.nav-tabs { display:flex; gap:6px; flex-wrap:wrap; margin-bottom:20px; }
+.nav-tab { padding:8px 16px; border-radius:8px; border:1px solid var(--border); background:var(--surface); color:var(--muted); cursor:pointer; font-size:13px; font-weight:500; }
+.nav-tab.active { background:var(--accent); color:#fff; border-color:var(--accent); }
+.nav-tab:hover:not(.active) { border-color:var(--accent); color:var(--text); }
+.section-header { display:flex; align-items:center; justify-content:space-between; margin-bottom:16px; }
+.section-title { font-size:18px; font-weight:700; }
+.section-sub { font-size:12px; color:var(--muted); margin-top:2px; }
+.division-grid { display:grid; grid-template-columns:repeat(auto-fill, minmax(140px,1fr)); gap:12px; }
+.division-card { background:var(--surface); border:1px solid var(--border); border-radius:12px; padding:20px 14px; text-align:center; cursor:pointer; transition:all .2s; }
+.division-card:hover { border-color:var(--accent); transform:translateY(-2px); }
+.division-card .div-num { font-size:24px; font-weight:800; color:var(--accent); }
+.division-card .div-label { font-size:11px; color:var(--muted); margin-top:4px; }
+.tbl-wrap { overflow-x:auto; border-radius:10px; border:1px solid var(--border); }
+table { width:100%; border-collapse:collapse; font-size:12px; min-width:600px; }
+th { background:var(--surface2); padding:10px 8px; text-align:center; color:var(--muted); font-weight:600; border-bottom:1px solid var(--border); }
+td { padding:7px 8px; border-bottom:1px solid var(--border); text-align:center; vertical-align:middle; }
+tr:last-child td { border-bottom:none; }
+tr:hover td { background:rgba(79,142,247,.05); }
+.sku-cell { font-weight:700; color:var(--accent); }
+.photo-cell { width:40px; height:40px; background:var(--surface2); border-radius:6px; display:flex; align-items:center; justify-content:center; color:var(--muted); font-size:18px; margin:auto; }
+.tag { display:inline-block; padding:2px 8px; border-radius:20px; font-size:10px; font-weight:600; }
+.tag-green { background:rgba(46,204,113,.15); color:var(--green); }
+.tag-yellow { background:rgba(241,196,15,.15); color:var(--yellow); }
+.tag-red { background:rgba(231,76,60,.15); color:var(--red); }
+.tag-blue { background:rgba(79,142,247,.15); color:var(--accent); }
+.form-grid { display:grid; grid-template-columns:repeat(auto-fill, minmax(200px,1fr)); gap:14px; margin-bottom:20px; }
+.form-group label { display:block; font-size:11px; color:var(--muted); margin-bottom:5px; text-transform:uppercase; letter-spacing:.5px; }
+.form-group select, .form-group input { width:100%; padding:9px 12px; background:var(--surface); border:1px solid var(--border); border-radius:8px; color:var(--text); font-size:13px; }
+.form-group select:focus, .form-group input:focus { outline:none; border-color:var(--accent); }
+.color-row { display:flex; gap:8px; align-items:center; margin-bottom:8px; }
+.color-row input { flex:1; padding:8px 10px; background:var(--surface); border:1px solid var(--border); border-radius:8px; color:var(--text); font-size:13px; }
+.wa-msg { background:var(--surface2); border-radius:10px; padding:14px; font-size:12px; white-space:pre-wrap; line-height:1.6; margin-bottom:10px; border-left:3px solid var(--green); }
+.alert-badge { background:var(--red); color:#fff; border-radius:50%; width:20px; height:20px; font-size:11px; display:inline-flex; align-items:center; justify-content:center; margin-left:6px; font-weight:700; }
+.alert-card { background:var(--surface); border-radius:10px; padding:14px 16px; margin-bottom:10px; border-left:4px solid var(--red); display:flex; justify-content:space-between; align-items:center; }
+.alert-card.warn { border-left-color:var(--yellow); }
+.maq-section { background:var(--surface); border-radius:12px; padding:20px; margin-bottom:16px; }
+.maq-section h3 { font-size:14px; font-weight:700; margin-bottom:14px; color:var(--accent); }
+.loading { text-align:center; color:var(--muted); padding:40px; font-size:14px; }
+.spinner { display:inline-block; width:18px; height:18px; border:2px solid var(--border); border-top-color:var(--accent); border-radius:50%; animation:spin .7s linear infinite; margin-right:6px; vertical-align:middle; }
+@keyframes spin { to { transform:rotate(360deg); } }
+.back-btn { display:flex; align-items:center; gap:6px; color:var(--muted); cursor:pointer; font-size:13px; margin-bottom:16px; }
+.back-btn:hover { color:var(--accent); }
+.empty { text-align:center; color:var(--muted); padding:40px; font-size:14px; }
+.card-box { background:var(--surface); border-radius:12px; padding:20px; margin-bottom:16px; }
+.toast { position:fixed; bottom:24px; right:24px; background:var(--green); color:#fff; padding:12px 20px; border-radius:10px; font-size:13px; z-index:9999; display:none; box-shadow:0 4px 20px rgba(0,0,0,.4); }
+.toast.show { display:block; animation:fadeIn .3s; }
+@keyframes fadeIn { from { opacity:0; transform:translateY(10px); } to { opacity:1; transform:translateY(0); } }
+</style>
+</head>
+<body>
+<div id="loginScreen" style="display: none;">
+  <div class="login-box">
+    <h1>📦 Resurtido</h1>
+    <p>Sistema de control de inventario</p>
+    <input type="text" id="loginUser" placeholder="Usuario" autocomplete="off">
+    <input type="password" id="loginPass" placeholder="Contraseña">
+    <button class="btn btn-primary" onclick="doLogin()">Entrar</button>
+    <div class="error-msg" id="loginError"></div>
+  </div>
+</div>
+<div id="appShell" style="display: flex;">
+  <div class="topbar">
+    <div class="topbar-brand">📦 Resurtido</div>
+    <span class="topbar-user" id="topUser">Usuario Reporte</span>
+    <span class="topbar-role" id="topRole">· reporte</span>
+    <button class="btn btn-outline btn-sm" onclick="doLogout()">Salir</button>
+  </div>
+  <div class="main-content" id="mainContent"><div class="nav-tabs"><div class="nav-tab active" onclick="switchTab(&#39;Reportes&#39;,this)">Reportes</div></div><div id="tabContent"><div class="section-header"><div class="section-title">Reportes de Ventas</div><button class="btn btn-primary btn-sm" onclick="showAddReporte()">+ Subir Reporte</button></div><div class="empty">No hay reportes registrados.</div></div></div>
+</div>
+<div class="toast" id="toast"></div>
+<script>
+const SB_URL = 'https://toudxxrcknguwenblvzm.supabase.co';
+const SB_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InRvdWR4eHJja25ndXdlbmJsdnptIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODA0MTQ5ODYsImV4cCI6MjA5NTk5MDk4Nn0.qD_-xthQ2EDm6b39b8G1gNoQvIEcJFnhJe5lir93P5A';
+
+const USERS = {
+  admin:     { pass:'2027',  role:'admin',     name:'Admin / Jaime' },
+  usuarioa:  { pass:'1234',  role:'usuarioa',  name:'Usuario A' },
+  usuariob:  { pass:'5678',  role:'usuariob',  name:'Usuario B' },
+  reporte:   { pass:'9999',  role:'reporte',   name:'Usuario Reporte' },
+  chucho:    { pass:'1616',  role:'maquilero', name:'Chucho' },
+  hortencia: { pass:'1717',  role:'maquilero', name:'Hortencia' },
+  jack:      { pass:'1818',  role:'maquilero', name:'Jack' },
+  michelle:  { pass:'1919',  role:'maquilero', name:'Michelle' },
+  omar:      { pass:'2020',  role:'maquilero', name:'Omar' },
+};
+
+const DIVISIONS = ['07','16','18','19','31','38','77','510','512','553','557','SANBORNS'];
+const SUPPLIERS = ['Style Melody','Cavalini','Chocolate','Mine','Active','Ambiance','Wax','Love Story','Maniju'];
+const MAQUILEROS = ['Chucho','Hortencia','Jack','Michelle','Omar'];
+const WEEKS = ['S1','S2','S3','S4','S5','S6','S7','S8'];
+
+let currentUser = null;
+let pedidoColors = [];
+
+async function sbFetch(path, opts={}) {
+  const r = await fetch(SB_URL+'/rest/v1/'+path, {
+    headers:{ 'apikey':SB_KEY, 'Authorization':'Bearer '+SB_KEY, 'Content-Type':'application/json', 'Prefer':opts.prefer||'return=representation', ...opts.headers }, ...opts
+  });
+  if (r.status===204) return [];
+  const d = await r.json();
+  if (!r.ok) throw new Error(d.message||r.status);
+  return d;
+}
+const sbGet = (t,q='') => sbFetch(t+'?'+q,{method:'GET'});
+const sbPost = (t,b) => sbFetch(t,{method:'POST',body:JSON.stringify(b)});
+
+function doLogin() {
+  const u = document.getElementById('loginUser').value.trim().toLowerCase();
+  const p = document.getElementById('loginPass').value.trim();
+  const usr = USERS[u];
+  if (!usr||usr.pass!==p) { document.getElementById('loginError').textContent='Usuario o contraseña incorrectos'; return; }
+  currentUser = {username:u,...usr};
+  document.getElementById('loginScreen').style.display='none';
+  document.getElementById('appShell').style.display='flex';
+  document.getElementById('topUser').textContent=currentUser.name;
+  document.getElementById('topRole').textContent='· '+currentUser.role;
+  renderHome();
+}
+document.addEventListener('keydown',e=>{ if(e.key==='Enter'&&!currentUser) doLogin(); });
+
+function doLogout() {
+  currentUser=null;
+  document.getElementById('appShell').style.display='none';
+  document.getElementById('loginScreen').style.display='flex';
+  document.getElementById('loginUser').value='';
+  document.getElementById('loginPass').value='';
+  document.getElementById('loginError').textContent='';
+}
+
+function showToast(msg,color='var(--green)') {
+  const t=document.getElementById('toast');
+  t.textContent=msg; t.style.background=color;
+  t.classList.add('show');
+  setTimeout(()=>t.classList.remove('show'),3000);
+}
+
+function renderHome() {
+  const r=currentUser.role;
+  if(r==='maquilero'){renderMaquileroHome();return;}
+  const tabMap={admin:['Divisiones','Pedidos','WhatsApp','Alertas','Reportes','Conteos'],usuarioa:['Divisiones','Pedidos','WhatsApp'],usuariob:['Divisiones','Alertas','Conteos'],reporte:['Reportes']};
+  const tabs=tabMap[r]||[];
+  document.getElementById('mainContent').innerHTML=`<div class="nav-tabs">${tabs.map((t,i)=>`<div class="nav-tab${i===0?' active':''}" onclick="switchTab('${t}',this)">${t}</div>`).join('')}</div><div id="tabContent"></div>`;
+  switchTab(tabs[0],document.querySelector('.nav-tab'));
+}
+
+function switchTab(tab,el) {
+  document.querySelectorAll('.nav-tab').forEach(t=>t.classList.remove('active'));
+  if(el) el.classList.add('active');
+  const c=document.getElementById('tabContent');
+  const fn={Divisiones:renderDivisions,Pedidos:renderPedidos,WhatsApp:renderWhatsApp,Alertas:renderAlertas,Reportes:renderReportes,Conteos:renderConteos};
+  if(fn[tab]) fn[tab](c);
+}
+
+function renderDivisions(c) {
+  c.innerHTML=`<div class="section-header"><div><div class="section-title">Divisiones</div><div class="section-sub">Selecciona una división</div></div></div><div class="division-grid">${DIVISIONS.map(d=>`<div class="division-card" onclick="openDivision('${d}')"><div class="div-num">${d}</div><div class="div-label">División</div></div>`).join('')}</div>`;
+}
+
+function openDivision(div) {
+  const c=document.getElementById('tabContent');
+  c.innerHTML=`<div class="back-btn" onclick="switchTab('Divisiones',document.querySelector('.nav-tab'))">← Regresar</div><div class="section-header"><div><div class="section-title">División ${div}</div></div>${['admin','usuarioa'].includes(currentUser.role)?`<button class="btn btn-primary btn-sm" onclick="showAddModelo('${div}')">+ Modelo</button>`:''}</div><div class="loading"><span class="spinner"></span>Cargando...</div>`;
+  loadDivision(div,c);
+}
+
+async function loadDivision(div,c) {
+  try {
+    const [modelos,pedidos]=await Promise.all([sbGet('modelos',`division=eq.${div}&order=sku.asc`),sbGet('pedidos',`division=eq.${div}`)]);
+    let html=`<div class="back-btn" onclick="switchTab('Divisiones',document.querySelector('.nav-tab'))">← Regresar</div><div class="section-header"><div><div class="section-title">División ${div}</div><div class="section-sub">${modelos.length} modelos</div></div>${['admin','usuarioa'].includes(currentUser.role)?`<button class="btn btn-primary btn-sm" onclick="showAddModelo('${div}')">+ Modelo</button>`:''}</div>`;
+    if(!modelos.length){html+=`<div class="empty">No hay modelos. Agrega el primero con "+ Modelo"</div>`;c.innerHTML=html;return;}
+    html+=`<div class="tbl-wrap"><table><thead><tr><th>Foto</th><th>SKU</th><th>Proveedor</th>${WEEKS.map(w=>`<th>${w}</th>`).join('')}<th>Almacén</th><th>Tránsito</th><th>Pedidos</th><th>Status</th></tr></thead><tbody>`;
+    modelos.forEach(m=>{
+      const totalPed=pedidos.filter(p=>p.sku===m.sku).reduce((a,p)=>a+(p.cantidad||0),0);
+      html+=`<tr><td><div class="photo-cell">👗</div></td><td class="sku-cell">${m.sku}</td><td>${m.proveedor||'-'}</td>${WEEKS.map(()=>`<td>-</td>`).join('')}<td>${m.almacen||0}</td><td>${m.transito||0}</td><td>${totalPed}</td><td><span class="tag ${totalPed>0?'tag-blue':'tag-green'}">${totalPed>0?'Con pedido':'OK'}</span></td></tr>`;
+    });
+    html+=`</tbody></table></div>`;
+    c.innerHTML=html;
+  } catch(e){c.innerHTML=`<div class="empty">Error al cargar: ${e.message}</div>`;}
+}
+
+function showAddModelo(div) {
+  const c=document.getElementById('tabContent');
+  c.innerHTML=`<div class="back-btn" onclick="openDivision('${div}')">← Regresar</div><div class="section-title" style="margin-bottom:16px">Nuevo Modelo — División ${div}</div><div class="card-box"><div class="form-grid"><div class="form-group"><label>SKU</label><input id="nSku" placeholder="ej. ST-001"></div><div class="form-group"><label>Proveedor</label><select id="nProv">${SUPPLIERS.map(s=>`<option>${s}</option>`).join('')}</select></div><div class="form-group"><label>Almacén</label><input type="number" id="nAlm" value="0"></div><div class="form-group"><label>Tránsito</label><input type="number" id="nTrans" value="0"></div></div><button class="btn btn-primary btn-sm" onclick="saveModelo('${div}')">Guardar</button><button class="btn btn-outline btn-sm" style="margin-left:8px" onclick="openDivision('${div}')">Cancelar</button></div>`;
+}
+
+async function saveModelo(div) {
+  const sku=document.getElementById('nSku').value.trim();
+  if(!sku){showToast('Ingresa un SKU','var(--red)');return;}
+  try {
+    await sbPost('modelos',{division:div,sku,proveedor:document.getElementById('nProv').value,almacen:parseInt(document.getElementById('nAlm').value)||0,transito:parseInt(document.getElementById('nTrans').value)||0});
+    showToast('Modelo guardado ✓');openDivision(div);
+  } catch(e){showToast('Error: '+e.message,'var(--red)');}
+}
+
+function renderPedidos(c) {
+  c.innerHTML=`<div class="loading"><span class="spinner"></span>Cargando pedidos...</div>`;
+  loadPedidos(c);
+}
+
+async function loadPedidos(c) {
+  try {
+    const pedidos=await sbGet('pedidos','order=fecha_pedido.desc&limit=100');
+    const hoy=new Date();
+    let html=`<div class="section-header"><div class="section-title">Pedidos</div><button class="btn btn-primary btn-sm" onclick="showNuevoPedido()">+ Nuevo Pedido</button></div>`;
+    if(!pedidos.length) html+=`<div class="empty">No hay pedidos aún. Crea el primero con "+ Nuevo Pedido"</div>`;
+    else {
+      html+=`<div class="tbl-wrap"><table><thead><tr><th>División</th><th>SKU</th><th>Proveedor</th><th>Maquilero</th><th>Cantidad</th><th>Fecha Pedido</th><th>Entrega</th><th>Status</th></tr></thead><tbody>`;
+      pedidos.forEach(p=>{
+        const venc=p.fecha_entrega&&new Date(p.fecha_entrega)<hoy;
+        html+=`<tr><td>${p.division||'-'}</td><td class="sku-cell">${p.sku||'-'}</td><td>${p.proveedor||'-'}</td><td>${p.maquilero||'-'}</td><td>${p.cantidad||0}</td><td>${p.fecha_pedido||'-'}</td><td>${p.fecha_entrega||'-'}</td><td><span class="tag ${venc?'tag-red':'tag-blue'}">${venc?'Vencido':'Activo'}</span></td></tr>`;
+      });
+      html+=`</tbody></table></div>`;
+    }
+    c.innerHTML=html;
+  } catch(e){c.innerHTML=`<div class="empty">Error: ${e.message}</div>`;}
+}
+
+function showNuevoPedido() {
+  pedidoColors=[{color:'',cantidad:0}];
+  const c=document.getElementById('tabContent');
+  c.innerHTML=`<div class="back-btn" onclick="renderPedidos(document.getElementById('tabContent'))">← Regresar</div><div class="section-title" style="margin-bottom:16px">Nuevo Pedido</div><div class="card-box"><div class="form-grid"><div class="form-group"><label>División</label><select id="pDiv">${DIVISIONS.map(d=>`<option>${d}</option>`).join('')}</select></div><div class="form-group"><label>SKU</label><input id="pSku" placeholder="ej. ST-001"></div><div class="form-group"><label>Proveedor</label><select id="pProv">${SUPPLIERS.map(s=>`<option>${s}</option>`).join('')}</select></div><div class="form-group"><label>Maquilero</label><select id="pMaq"><option value="">Sin asignar</option>${MAQUILEROS.map(m=>`<option>${m}</option>`).join('')}</select></div><div class="form-group"><label>Fecha Pedido</label><input type="date" id="pFecha" value="${new Date().toISOString().split('T')[0]}"></div><div class="form-group"><label>Fecha Entrega</label><input type="date" id="pEntrega"></div></div><div style="margin-bottom:16px"><div style="font-size:11px;color:var(--muted);margin-bottom:8px;text-transform:uppercase;letter-spacing:.5px">Colores y Cantidades</div><div id="colorRows"></div><button class="btn btn-outline btn-sm" onclick="addColor()">+ Color</button></div><div style="font-size:13px;color:var(--muted);margin-bottom:16px">Total: <strong id="totalPcs" style="color:var(--text)">0</strong> pcs</div><button class="btn btn-primary btn-sm" onclick="savePedido()">Guardar Pedido</button></div>`;
+  renderColors();
+}
+
+function renderColors() {
+  const d=document.getElementById('colorRows');
+  if(!d) return;
+  d.innerHTML=pedidoColors.map((c,i)=>`<div class="color-row"><input placeholder="Color" value="${c.color}" oninput="pedidoColors[${i}].color=this.value"><input type="number" placeholder="Cant" style="max-width:80px" value="${c.cantidad}" oninput="pedidoColors[${i}].cantidad=parseInt(this.value)||0;updTotal()">${pedidoColors.length>1?`<button class="btn btn-red btn-sm" onclick="removeColor(${i})">✕</button>`:''}</div>`).join('');
+  updTotal();
+}
+function addColor(){pedidoColors.push({color:'',cantidad:0});renderColors();}
+function removeColor(i){pedidoColors.splice(i,1);renderColors();}
+function updTotal(){const e=document.getElementById('totalPcs');if(e)e.textContent=pedidoColors.reduce((a,c)=>a+(c.cantidad||0),0);}
+
+async function savePedido() {
+  const sku=document.getElementById('pSku').value.trim();
+  if(!sku){showToast('Ingresa un SKU','var(--red)');return;}
+  const total=pedidoColors.reduce((a,c)=>a+(c.cantidad||0),0);
+  try {
+    const res=await sbPost('pedidos',{division:document.getElementById('pDiv').value,sku,proveedor:document.getElementById('pProv').value,maquilero:document.getElementById('pMaq').value||null,cantidad:total,fecha_pedido:document.getElementById('pFecha').value,fecha_entrega:document.getElementById('pEntrega').value||null});
+    if(res&&res[0]){const pid=res[0].id;for(const c of pedidoColors){if(c.color)await sbPost('pedido_colores',{pedido_id:pid,color:c.color,cantidad:c.cantidad});}}
+    showToast('Pedido guardado ✓');
+    renderPedidos(document.getElementById('tabContent'));
+  } catch(e){showToast('Error: '+e.message,'var(--red)');}
+}
+
+function renderWhatsApp(c) {
+  c.innerHTML=`<div class="loading"><span class="spinner"></span>Generando mensajes...</div>`;
+  loadWA(c);
+}
+
+async function loadWA(c) {
+  try {
+    const pedidos=await sbGet('pedidos','order=proveedor.asc');
+    const byProv={};
+    pedidos.forEach(p=>{if(!byProv[p.proveedor])byProv[p.proveedor]=[];byProv[p.proveedor].push(p);});
+    let html=`<div class="section-header"><div class="section-title">Mensajes WhatsApp por Proveedor</div></div>`;
+    if(!Object.keys(byProv).length){html+=`<div class="empty">No hay pedidos para generar mensajes.</div>`;}
+    else {
+      Object.entries(byProv).forEach(([prov,items])=>{
+        const lines=items.map(p=>`• SKU: ${p.sku} | Div: ${p.division} | Cant: ${p.cantidad} pcs | Entrega: ${p.fecha_entrega||'por confirmar'}`).join('\n');
+        const msg=`Hola, buenos días 🙏\n\nResumen de pedidos pendientes:\n\n${lines}\n\nQuedamos en espera de confirmación.\n¡Gracias!`;
+        const encoded=encodeURIComponent(msg);
+        html+=`<div style="margin-bottom:24px"><div style="font-size:13px;font-weight:700;margin-bottom:8px;color:var(--accent)">${prov} <span style="font-size:11px;color:var(--muted);font-weight:400">(${items.length} pedidos)</span></div><div class="wa-msg">${msg}</div><button class="btn btn-green btn-sm" onclick="copyWA(this,\`${msg.replace(/`/g,'\\`')}\`)">📋 Copiar</button> <a href="https://wa.me/?text=${encoded}" target="_blank"><button class="btn btn-sm" style="background:#25D366;color:#fff">💬 Abrir WhatsApp</button></a></div>`;
+      });
+    }
+    c.innerHTML=html;
+  } catch(e){c.innerHTML=`<div class="empty">Error: ${e.message}</div>`;}
+}
+
+function copyWA(btn,msg){navigator.clipboard.writeText(msg).then(()=>{btn.textContent='✓ Copiado';setTimeout(()=>btn.textContent='📋 Copiar',2000);});}
+
+function renderAlertas(c) {
+  c.innerHTML=`<div class="loading"><span class="spinner"></span>Verificando alertas...</div>`;
+  loadAlertas(c);
+}
+
+async function loadAlertas(c) {
+  try {
+    const [pedidos,conteos]=await Promise.all([sbGet('pedidos','order=fecha_pedido.asc'),sbGet('conteos','select=pedido_id')]);
+    const conteoIds=new Set(conteos.map(c=>c.pedido_id));
+    const hoy=new Date();
+    const alerts=[];
+    pedidos.forEach(p=>{
+      const diasPed=Math.floor((hoy-new Date(p.fecha_pedido))/86400000);
+      if(diasPed>=7&&!conteoIds.has(p.id)) alerts.push({type:'red',titulo:'Sin conteo de maquilero',detalle:`SKU ${p.sku} | ${p.maquilero||'Sin maquilero'} | ${diasPed} días desde el pedido`});
+      if(p.fecha_entrega&&new Date(p.fecha_entrega)<hoy){const dias=Math.floor((hoy-new Date(p.fecha_entrega))/86400000);alerts.push({type:'warn',titulo:'Entrega vencida',detalle:`SKU ${p.sku} | ${p.proveedor} | ${dias} días de retraso`});}
+    });
+    let html=`<div class="section-header"><div class="section-title">Alertas ${alerts.length?`<span class="alert-badge">${alerts.length}</span>`:''}</div></div>`;
+    if(!alerts.length) html+=`<div class="empty">✅ Sin alertas activas</div>`;
+    else alerts.forEach(a=>{html+=`<div class="alert-card ${a.type==='warn'?'warn':''}"><div><strong style="font-size:13px">${a.titulo}</strong><br><span style="font-size:11px;color:var(--muted)">${a.detalle}</span></div><span class="tag ${a.type==='red'?'tag-red':'tag-yellow'}">${a.type==='red'?'⚠️ Urgente':'🕐 Vencido'}</span></div>`;});
+    c.innerHTML=html;
+  } catch(e){c.innerHTML=`<div class="empty">Error: ${e.message}</div>`;}
+}
+
+function renderReportes(c) {
+  c.innerHTML=`<div class="loading"><span class="spinner"></span>Cargando reportes...</div>`;
+  loadReportes(c);
+}
+
+async function loadReportes(c) {
+  try {
+    const rep=await sbGet('reportes','order=fecha.desc&limit=100');
+    const canAdd=['admin','reporte'].includes(currentUser.role);
+    let html=`<div class="section-header"><div class="section-title">Reportes de Ventas</div>${canAdd?`<button class="btn btn-primary btn-sm" onclick="showAddReporte()">+ Subir Reporte</button>`:''}</div>`;
+    if(!rep.length) html+=`<div class="empty">No hay reportes registrados.</div>`;
+    else html+=`<div class="tbl-wrap"><table><thead><tr><th>División</th><th>SKU</th><th>Semana</th><th>Ventas</th><th>Fecha</th></tr></thead><tbody>${rep.map(r=>`<tr><td>${r.division||'-'}</td><td class="sku-cell">${r.sku||'-'}</td><td>${r.semana||'-'}</td><td>${r.ventas||0}</td><td>${r.fecha||'-'}</td></tr>`).join('')}</tbody></table></div>`;
+    c.innerHTML=html;
+  } catch(e){c.innerHTML=`<div class="empty">Error: ${e.message}</div>`;}
+}
+
+function showAddReporte() {
+  const c=document.getElementById('tabContent');
+  c.innerHTML=`<div class="back-btn" onclick="renderReportes(document.getElementById('tabContent'))">← Regresar</div><div class="section-title" style="margin-bottom:16px">Subir Reporte de Ventas</div><div class="card-box"><div class="form-grid"><div class="form-group"><label>División</label><select id="rDiv">${DIVISIONS.map(d=>`<option>${d}</option>`).join('')}</select></div><div class="form-group"><label>SKU</label><input id="rSku" placeholder="ej. ST-001"></div><div class="form-group"><label>Semana</label><select id="rSem">${WEEKS.map(w=>`<option>${w}</option>`).join('')}</select></div><div class="form-group"><label>Ventas (pcs)</label><input type="number" id="rVentas" value="0"></div></div><button class="btn btn-primary btn-sm" onclick="saveReporte()">Guardar</button><button class="btn btn-outline btn-sm" style="margin-left:8px" onclick="renderReportes(document.getElementById('tabContent'))">Cancelar</button></div>`;
+}
+
+async function saveReporte() {
+  const sku=document.getElementById('rSku').value.trim();
+  if(!sku){showToast('Ingresa un SKU','var(--red)');return;}
+  try {
+    await sbPost('reportes',{division:document.getElementById('rDiv').value,sku,semana:document.getElementById('rSem').value,ventas:parseInt(document.getElementById('rVentas').value)||0,fecha:new Date().toISOString().split('T')[0]});
+    showToast('Reporte guardado ✓');
+    renderReportes(document.getElementById('tabContent'));
+  } catch(e){showToast('Error: '+e.message,'var(--red)');}
+}
+
+function renderConteos(c) {
+  c.innerHTML=`<div class="loading"><span class="spinner"></span>Cargando conteos...</div>`;
+  loadConteos(c);
+}
+
+async function loadConteos(c) {
+  try {
+    const conteos=await sbGet('conteos','order=fecha.desc&limit=100');
+    let html=`<div class="section-header"><div class="section-title">Conteos de Maquileros</div></div>`;
+    if(!conteos.length) html+=`<div class="empty">No hay conteos registrados.</div>`;
+    else html+=`<div class="tbl-wrap"><table><thead><tr><th>Maquilero</th><th>SKU</th><th>División</th><th>Piezas</th><th>Nota</th><th>Fecha</th></tr></thead><tbody>${conteos.map(c=>`<tr><td>${c.maquilero||'-'}</td><td class="sku-cell">${c.sku||'-'}</td><td>${c.division||'-'}</td><td><strong>${c.piezas||0}</strong></td><td>${c.nota||'-'}</td><td>${c.fecha||'-'}</td></tr>`).join('')}</tbody></table></div>`;
+    c.innerHTML=html;
+  } catch(e){c.innerHTML=`<div class="empty">Error: ${e.message}</div>`;}
+}
+
+function renderMaquileroHome() {
+  document.getElementById('mainContent').innerHTML=`<div class="maq-section"><h3>📋 Registrar Conteo</h3><div class="form-grid"><div class="form-group"><label>División</label><select id="mDiv">${DIVISIONS.map(d=>`<option>${d}</option>`).join('')}</select></div><div class="form-group"><label>SKU / Modelo</label><input id="mSku" placeholder="ej. ST-001"></div><div class="form-group"><label>Piezas contadas</label><input type="number" id="mPiezas" placeholder="0"></div><div class="form-group"><label>Nota (opcional)</label><input id="mNota" placeholder="observación..."></div></div><button class="btn btn-primary btn-sm" onclick="saveConteo()">Enviar Conteo</button></div><div class="maq-section"><h3>📊 Mis Conteos Recientes</h3><div id="misConteos"><div class="loading"><span class="spinner"></span>Cargando...</div></div></div>`;
+  loadMisConteos();
+}
+
+async function loadMisConteos() {
+  try {
+    const c=await sbGet('conteos',`maquilero=eq.${currentUser.name}&order=fecha.desc&limit=20`);
+    const el=document.getElementById('misConteos');
+    if(!el) return;
+    if(!c.length){el.innerHTML=`<div class="empty">No tienes conteos registrados aún.</div>`;return;}
+    el.innerHTML=`<div class="tbl-wrap"><table><thead><tr><th>División</th><th>SKU</th><th>Piezas</th><th>Nota</th><th>Fecha</th></tr></thead><tbody>${c.map(x=>`<tr><td>${x.division||'-'}</td><td class="sku-cell">${x.sku||'-'}</td><td><strong>${x.piezas||0}</strong></td><td>${x.nota||'-'}</td><td>${x.fecha||'-'}</td></tr>`).join('')}</tbody></table></div>`;
+  } catch(e){const el=document.getElementById('misConteos');if(el)el.innerHTML=`<div class="empty">Error: ${e.message}</div>`;}
+}
+
+async function saveConteo() {
+  const sku=document.getElementById('mSku').value.trim();
+  if(!sku){showToast('Ingresa un SKU','var(--red)');return;}
+  try {
+    await sbPost('conteos',{maquilero:currentUser.name,division:document.getElementById('mDiv').value,sku,piezas:parseInt(document.getElementById('mPiezas').value)||0,nota:document.getElementById('mNota').value.trim()||null,fecha:new Date().toISOString().split('T')[0]});
+    showToast('Conteo enviado ✓');
+    document.getElementById('mSku').value='';
+    document.getElementById('mPiezas').value='';
+    document.getElementById('mNota').value='';
+    loadMisConteos();
+  } catch(e){showToast('Error: '+e.message,'var(--red)');}
+}
+</script>
+
+
+</body></html>
